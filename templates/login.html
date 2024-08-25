@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+    {% block title %}
+        <title>Sign Up</title>
+    {% endblock %}
+    {% block content %}
+        <form action="home-page" method="post">
+            <label for="user">Username</label>
+            <input type="text" name="user" id="user" required>
+            <br>
+            <label for="pass">Password</label>
+            <input type="password" name="pass" id="password" required>
+            <br>
+            <input type="submit">
+        </form>
+        <form action="login" method="post">
+            <input type="submit" value="Don't have an account? Sign Up">
+        </form>
+    {% endblock %}
