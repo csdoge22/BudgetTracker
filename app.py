@@ -1,9 +1,12 @@
 from flask import Flask, flash, redirect, render_template, request, url_for, session
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash  # For password hashing
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 app = Flask(__name__)
-app.secret_key = "kmasdfj8au32ja3n1i"
+app.secret_key = os.getenv("SECRET_KEY")
 
 # Initialize the SQLite database
 def initdb():
