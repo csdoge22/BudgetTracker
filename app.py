@@ -3,6 +3,7 @@ import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash  # For password hashing
 
 app = Flask(__name__)
+app.secret_key = "kmasdfj8au32ja3n1i"
 
 # Initialize the SQLite database
 def initdb():
@@ -39,13 +40,16 @@ def hello():
                 VALUES (?, ?)
                 """, (user, password))
                 dbconn.commit()
-        
+    
         dbcur.execute("SELECT username FROM login")
         usernameDB = dbcur.fetchall()
+        print("DATABASE CONTENTS: ")
         print(usernameDB)
 
-        return render_template("user.html", user=user, database=usernameDB)
-    return render_template("index.html")
+        return render_template("user.html", user=user, usernameDB=usernameDB, numElements=len(usernameDB))
+    error = 'Sorry! But please login first'
+    flash(error)
+    return render_template("index.html", error=error)
 
 
 
